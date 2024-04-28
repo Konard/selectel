@@ -38,11 +38,11 @@ const createProjectToken = async (accountId, serviceUserName, serviceUserPasswor
     }),
   });
   if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    throw new Error(`HTTP Error (status: ${response.status}): ${JSON.stringify(await response.json(), null, 2)}`);
   }
   return response.headers.get("x-subject-token");
 };
 
 createProjectToken(accountId, serviceUserName, serviceUserPassword, projectName)
-  .then((token) => console.log(token))
-  .catch((error) => console.error('Error creating token:', error));
+  .then(console.log)
+  .catch(console.error);
