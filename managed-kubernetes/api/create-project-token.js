@@ -44,5 +44,4 @@ const createProjectToken = async (accountId, serviceUserName, serviceUserPasswor
 };
 
 createProjectToken(accountId, serviceUserName, serviceUserPassword, projectName)
-  .then(console.log)
-  .catch(console.error);
+  .then(console.log);

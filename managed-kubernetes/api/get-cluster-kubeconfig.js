@@ -1,12 +1,11 @@
-const fetch = require('node-fetch');
+const fetch = require('node-fetch'); 
 
 const projectToken = process.env.SELECTEL_PROJECT_TOKEN || '';
-const clusterId = process.env.SELECTEL_CLUSTER_ID || '';
 
-const deleteCluster = async (projectToken) => {
+const getClusters = async (projectToken) => {
   const apiUrl = 'https://ru-2.mks.selcloud.ru/v1/clusters';
-  const response = await fetch(`${apiUrl}/${clusterId}`, {
-    method: 'DELETE',
+  const response = await fetch(`${apiUrl}`, {
+    method: 'GET',
     headers: {
       'X-Auth-Token': projectToken,
     },
@@ -14,8 +13,8 @@ const deleteCluster = async (projectToken) => {
   if (!response.ok) {
     throw new Error(`HTTP Error (status: ${response.status}): ${JSON.stringify(await response.json(), null, 2)}`);
   }
-  return response.text();
+  return response.json();
 };
 
-deleteCluster(projectToken)
-  .catch(console.error);
+getClusters(projectToken)
+  .then((response) => console.log(JSON.stringify(response, null, 2)));

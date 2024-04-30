@@ -31,13 +31,13 @@ const createCluster = async (projectToken) => {
           // "x509_ca_certificates": "string"
         },
         // "maintenance_window_start": "string",
-        "name": "default-cluser",
+        "name": "example-cluster",
         // "network_id": "string",
         "nodegroups": [
           {
             // "affinity_policy": "soft-anti-affinity",
             "autoscale_min_nodes": 1,
-            "autoscale_max_nodes": 4,
+            "autoscale_max_nodes": 3,
             "availability_zone": "ru-2c",
             "count": 1,
             "cpus": 4,
@@ -77,5 +77,4 @@ const createCluster = async (projectToken) => {
 };
 
 createCluster(projectToken)
-  .then((response) => console.log(JSON.stringify(response, null, 2)))
-  .catch(console.error);
+  .then((response) => console.log(JSON.stringify(response, null, 2)));
